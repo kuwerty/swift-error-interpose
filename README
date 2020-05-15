@@ -1,0 +1,29 @@
+When Swift throws an error it's often useful to capture a backtrace at the point of the throw (not at the point it results in an unexpected error).
+
+This library intercepts calls to swift_willThrow to capture a backtrace during the throw and if an unexpected error actually occurs then the backtrace is printed to stdout.
+
+
+MacOS
+=====
+1. Run the build.sh script
+
+2. Run your app as normal but set/export the environment variable:
+
+    DYLD_INSERT_LIBRARIES=<path to libswiftinterpose-macosx.dylib>
+
+You can edit the Xcode scheme to set this or add it your command line:
+
+DYLD_INSERT_LIBRARIES=<path to libswiftinterpose.dylib> my_program
+
+There may be other ways to make this work, the iOS usage probably works as well
+
+
+iOS
+===
+1. Add interpose.c to a framework (it must be a framework/dylib).
+
+
+Linux
+=====
+Not yet.
+
